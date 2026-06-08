@@ -1,221 +1,50 @@
-"use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Star, ChevronLeft, ChevronRight } from "lucide-react";
-
-const testimonials = [
-  {
-    name: "Marcus T.",
-    role: "U.S. Army Veteran",
-    initials: "MT",
-    avatarGradient: "from-[#4C1D95] to-[#6D28D9]",
-    stars: 5,
-    quote:
-      "Regal Empowerment Solutions changed my life. After struggling to navigate the VA system for years, LaWanda personally guided me through the enrollment process and connected me with resources I never knew existed. I finally feel like someone had my back.",
-    service: "Veterans & Families",
+{
+  "name": "regal-empowerment-solutions",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
-  {
-    name: "Sherika J.",
-    role: "Community Member",
-    initials: "SJ",
-    avatarGradient: "from-[#2D0057] to-[#4C1D95]",
-    stars: 5,
-    quote:
-      "The mental health support I received through RES was unlike anything I had experienced before. LaWanda's faith-informed approach made me feel seen, whole, and hopeful. She doesn't just treat the symptoms — she helps you heal at the root.",
-    service: "Mental Health & Wellness",
+  "dependencies": {
+    "@radix-ui/react-avatar": "^1.1.3",
+    "@radix-ui/react-checkbox": "^1.1.4",
+    "@radix-ui/react-dialog": "^1.1.6",
+    "@radix-ui/react-dropdown-menu": "^2.1.6",
+    "@radix-ui/react-label": "^2.1.2",
+    "@radix-ui/react-popover": "^1.1.6",
+    "@radix-ui/react-progress": "^1.1.2",
+    "@radix-ui/react-scroll-area": "^1.2.3",
+    "@radix-ui/react-select": "^2.1.6",
+    "@radix-ui/react-separator": "^1.1.2",
+    "@radix-ui/react-slot": "^1.1.2",
+    "@radix-ui/react-switch": "^1.1.3",
+    "@radix-ui/react-tabs": "^1.1.3",
+    "@radix-ui/react-tooltip": "^1.1.8",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "framer-motion": "^12.6.0",
+    "lucide-react": "^0.475.0",
+    "next": "15.3.9",
+    "react": "^19",
+    "react-dom": "^19",
+    "recharts": "^3.8.1",
+    "tailwind-merge": "^3.0.2"
   },
-  {
-    name: "Pastor David R.",
-    role: "Community Leader",
-    initials: "DR",
-    avatarGradient: "from-[#6D28D9] to-[#7C3AED]",
-    stars: 5,
-    quote:
-      "We brought LaWanda in for a leadership development workshop for our congregation's outreach team. Her expertise and presence were extraordinary. She elevated our entire team's capacity. Regal Empowerment Solutions is exactly what our community needed.",
-    service: "Training & Consulting",
-  },
-  {
-    name: "Angela M.",
-    role: "Social Services Director",
-    initials: "AM",
-    avatarGradient: "from-[#3B0764] to-[#6D28D9]",
-    stars: 5,
-    quote:
-      "Working with RES on our coalition building initiative was a game changer. LaWanda brought professionalism, warmth, and strategic vision to every meeting. She genuinely cares about the communities she serves. Highly recommend.",
-    service: "Community Engagement",
-  },
-  {
-    name: "James W.",
-    role: "Navy Veteran & Father",
-    initials: "JW",
-    avatarGradient: "from-[#4C1D95] to-[#8B5CF6]",
-    stars: 5,
-    quote:
-      "After transitioning out of the military, I felt completely lost. RES provided care coordination support that helped my entire family — not just me. The compassion and professionalism here is unmatched. God placed the right people in our path.",
-    service: "Veterans & Families",
-  },
-];
-
-function StarRating({ count }: { count: number }) {
-  return (
-    <div className="flex gap-1">
-      {Array.from({ length: count }).map((_, i) => (
-        <Star key={i} className="h-4 w-4 fill-[#D4AF37] text-[#D4AF37]" />
-      ))}
-    </div>
-  );
-}
-
-export function Testimonials() {
-  const [current, setCurrent] = useState(0);
-
-  const prev = () => setCurrent((c) => (c - 1 + testimonials.length) % testimonials.length);
-  const next = () => setCurrent((c) => (c + 1) % testimonials.length);
-
-  const t = testimonials[current];
-
-  return (
-    <section className="py-28 bg-gradient-to-b from-[#FFFBEB] to-white relative overflow-hidden">
-      {/* Gold top line */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent" />
-
-      {/* Background decoration */}
-      <div className="absolute top-10 left-0    w-80 h-80 bg-[#EDE9FE]/40 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 right-0 w-96 h-96 bg-[#FFF3C0]/50 rounded-full blur-3xl pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-
-        {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-20"
-        >
-          <span className="inline-block text-[#B8960C] text-xs font-bold tracking-[0.4em] uppercase bg-[#FFF3C0] border border-[#E8C84A]/40 px-5 py-2 rounded-full mb-5">
-            Client Stories
-          </span>
-          <h2 className="font-black text-4xl lg:text-6xl mb-4 bg-gradient-to-r from-[#2D0057] via-[#4C1D95] to-[#6D28D9] bg-clip-text text-transparent">
-            Voices of Triumph
-          </h2>
-          <div className="w-20 h-1.5 bg-gradient-to-r from-[#D4AF37] to-[#F0D060] mx-auto rounded-full mb-6" />
-          <p className="text-[#4C1D95]/70 text-lg max-w-2xl mx-auto leading-relaxed">
-            Real stories from real people whose lives have been transformed through
-            Regal Empowerment Solutions.
-          </p>
-        </motion.div>
-
-        {/* Featured testimonial carousel */}
-        <div className="max-w-4xl mx-auto mb-16">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={current}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.45 }}
-              className="bg-gradient-to-br from-[#2D0057] via-[#4C1D95] to-[#6D28D9] rounded-3xl p-10 lg:p-14 relative overflow-hidden shadow-2xl shadow-purple-300/30"
-            >
-              {/* Decorative rings */}
-              <div className="absolute -top-16 -right-16 w-56 h-56 rounded-full border border-[#D4AF37]/15" />
-              <div className="absolute -bottom-10 -left-10  w-40 h-40 rounded-full border border-white/10" />
-              <div className="absolute top-6 right-6 text-[#D4AF37]/20 text-8xl font-black leading-none select-none">&ldquo;</div>
-
-              <div className="relative z-10">
-                {/* Stars + service tag */}
-                <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
-                  <StarRating count={t.stars} />
-                  <span className="inline-block text-[#F0D060] text-xs font-bold tracking-widest uppercase bg-[#D4AF37]/15 border border-[#D4AF37]/30 px-3 py-1 rounded-full">
-                    {t.service}
-                  </span>
-                </div>
-
-                {/* Quote */}
-                <p className="text-white text-xl lg:text-2xl leading-relaxed font-medium italic mb-10">
-                  &ldquo;{t.quote}&rdquo;
-                </p>
-
-                {/* Reviewer */}
-                <div className="flex items-center gap-4">
-                  <div className={`w-14 h-14 rounded-full bg-gradient-to-br ${t.avatarGradient} border-2 border-[#D4AF37]/50 flex items-center justify-center flex-shrink-0`}>
-                    <span className="text-[#F0D060] font-black text-sm">{t.initials}</span>
-                  </div>
-                  <div>
-                    <div className="text-[#F0D060] font-black text-base">{t.name}</div>
-                    <div className="text-[#C4B5FD] text-sm">{t.role}</div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-
-          {/* Navigation */}
-          <div className="flex items-center justify-center gap-4 mt-8">
-            <button
-              onClick={prev}
-              className="w-11 h-11 rounded-full border-2 border-[#4C1D95]/30 hover:border-[#D4AF37] hover:bg-[#D4AF37]/10 flex items-center justify-center transition-all group"
-            >
-              <ChevronLeft className="h-5 w-5 text-[#4C1D95] group-hover:text-[#D4AF37] transition-colors" />
-            </button>
-
-            {/* Dots */}
-            <div className="flex gap-2">
-              {testimonials.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setCurrent(i)}
-                  className={`transition-all rounded-full ${
-                    i === current
-                      ? "w-8 h-3 bg-gradient-to-r from-[#D4AF37] to-[#F0D060]"
-                      : "w-3 h-3 bg-[#C4B5FD] hover:bg-[#A78BFA]"
-                  }`}
-                />
-              ))}
-            </div>
-
-            <button
-              onClick={next}
-              className="w-11 h-11 rounded-full border-2 border-[#4C1D95]/30 hover:border-[#D4AF37] hover:bg-[#D4AF37]/10 flex items-center justify-center transition-all group"
-            >
-              <ChevronRight className="h-5 w-5 text-[#4C1D95] group-hover:text-[#D4AF37] transition-colors" />
-            </button>
-          </div>
-        </div>
-
-        {/* Mini cards row */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-          {testimonials.slice(0, 3).map((test, i) => (
-            <motion.button
-              key={i}
-              onClick={() => setCurrent(i)}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.45, delay: i * 0.1 }}
-              whileHover={{ y: -4 }}
-              className={`text-left bg-white rounded-2xl p-5 shadow-md hover:shadow-xl transition-all border-2 ${
-                current === i ? "border-[#D4AF37] shadow-[#D4AF37]/20" : "border-transparent"
-              }`}
-            >
-              <StarRating count={test.stars} />
-              <p className="text-gray-600 text-sm mt-3 mb-4 line-clamp-2 italic">
-                &ldquo;{test.quote}&rdquo;
-              </p>
-              <div className="flex items-center gap-3">
-                <div className={`w-9 h-9 rounded-full bg-gradient-to-br ${test.avatarGradient} flex items-center justify-center flex-shrink-0`}>
-                  <span className="text-[#F0D060] font-black text-xs">{test.initials}</span>
-                </div>
-                <div>
-                  <div className="text-[#2D0057] font-bold text-xs">{test.name}</div>
-                  <div className="text-gray-400 text-[10px]">{test.role}</div>
-                </div>
-              </div>
-            </motion.button>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+  "devDependencies": {
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9",
+    "eslint-config-next": "15.3.9",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.17",
+    "tailwindcss-animate": "^1.0.7",
+    "typescript": "^5"
+  }
 }
