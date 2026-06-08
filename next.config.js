@@ -1,16 +1,17 @@
-"use client";
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "galaxy-prod.tlcdn.com",
+        pathname: "/**",
+      },
+    ],
+  },
+};
 
-import { motion } from "framer-motion";
-import Image from "next/image";
-import { CheckCircle, ArrowRight, Shield, Users, BookOpen, Activity, Star } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-
-const credentials = [
-  "Doctorate of Social Work Candidate",
-  "Licensed Independent Clinical Social Worker – Supervisor (LICSW-S)",
-  "Founder & CEO, Regal Empowerment Solutions",
-];
+module.exports = nextConfig;
 
 const specializations = [
   { label: "Veterans",               emoji: "🎖️", color: "from-[#2D0057] to-[#4C1D95]" },
